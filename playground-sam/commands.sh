@@ -10,14 +10,13 @@ aws cloudformation package \
 
 ## Deploy the SAM template
 aws cloudformation deploy \
-    --template-file packaged.yaml \
-    --stack-name playground-sam \
+    --template-file gen/packaged.yaml \
+    --stack-name playground-sam-hello-world \
     --capabilities CAPABILITY_IAM \
     --profile RebeccaPersonal
 
 ## Invoke the Lambda function
 aws lambda invoke \
-    --function-name playground-sam-HelloWorldFunction-1Q8ZQXQZVZQ8 \
-    --payload '{"name": "Bob"}' \ 
+    --function-name playground-sam-hello-world-HelloWorldFunction-iOB9Cu454dwr \
     --profile RebeccaPersonal \
     response.json
