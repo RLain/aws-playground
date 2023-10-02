@@ -1,0 +1,45 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: >-
+  A simple backend (read/write to DynamoDB) with a RESTful API endpoint using Amazon API Gateway.
+
+Globals:
+  #https://github.com/awslabs/serverless-application-model/blob/develop/docs/globals.rst
+  Function:
+    Runtime: python3.9
+    MemorySize: 512
+    # Defines the environment variables we want to utilise:
+    Environment:
+      Variables:
+        TABLE_NAME: !Ref Table #This then references the Table resource below
+        REGION_NAME: !Ref AWS::Region #This syntax references the region utilised by the application on AWS hence the AWS:: syntax
+
+Resources:
+  microservicehttpendpointpython3:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: lambda_function.lambda_handler
+      CodeUri: .
+      Description: >-
+        A simple backend (read/write to DynamoDB) with a RESTful API endpoint using Amazon API Gateway.
+      Timeout: 10
+      # This adds IAM policies that can be added onto the Lambda function to ensure we have the correct permissions to access DynamoDB
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref Table
+      Events:
+        HelloWorldSAMAPI:
+          Type: Api
+          Properties:
+            Path: /hello
+            Method: GET
+
+  Table:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      PrimaryKey:
+        Name: greeting
+        Type: String
+      ProvisionedThroughput:
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1
