@@ -20,3 +20,8 @@ aws lambda invoke \
     --function-name playground-sam-hello-world-HelloWorldFunction-iOB9Cu454dwr \
     --profile RebeccaPersonal \
     response.json
+
+
+## Use SAM guided deployment
+
+sam deploy --guided --profile RebeccaPersonal
