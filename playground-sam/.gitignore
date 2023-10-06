@@ -246,3 +246,4 @@ $RECYCLE.BIN/
 
 # aws config
 .aws-sam/
+gen/
