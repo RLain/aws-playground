@@ -12,7 +12,8 @@ cdk init --language javascript
 cdk ls
 
 # install the necessary packages
-npm install @aws-cdk/aws-s3 @aws-cdk/aws-iam @aws-cdk/aws-lambda @aws-cdk/aws-lambda-event-sources @aws-cdk/aws-dynamodb
+npm install aws-cdk-lib
+
 
 
 # 2. copy the content of cdk-app-stack.js into lib/cdk-app-stack.js
