@@ -1,5 +1,5 @@
-const cdk = require('@aws-cdk/core');
-const s3 = require('@aws-cdk/aws-s3');
+const cdk = require('aws-cdk-lib');
+const s3 = require('aws-cdk-lib/aws-s3');
 const iam = require('@aws-cdk/aws-iam');
 const lambda = require('@aws-cdk/aws-lambda');
 const lambdaEventSource = require('@aws-cdk/aws-lambda-event-sources');
